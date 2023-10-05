@@ -21,3 +21,23 @@
     cursor: pointer;
     font-size: 75px;
 }
+
+.score-board {
+    margin-top: 10px;
+}
+
+.reset-btn {
+    margin-top: 15px;
+    font-family: "Permanent Marker", cursive;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 5px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.reset-btn:hover {
+    background-color: aquamarine;
+    color: black;
+}
