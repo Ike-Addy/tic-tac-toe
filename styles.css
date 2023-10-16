@@ -1,43 +1,90 @@
-#game-container {
-    font-family:"Permanent Marker", cursive;
-    text-align: center;
+*::after, *::before {
+    box-sizing: border-box;
 }
 
-#cells-container {
+/* Sets all cells to 100px and sets markers to 90% of 100px */
+:root {
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size) * .9);
+}
+
+body {
+    margin: 0;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    width: 250px;
-    margin: auto;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
 }
 
 .cell {
-    border: 2px black solid;
-    width: 100px;
-    height: 100px;
-    box-shadow: 0 0 0 2px;
-    cursor: pointer;
-    font-size: 75px;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
-.score-board {
-    margin-top: 10px;
+/* Removes board's outside borders */
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
 }
+.cell:nth-child(3n + 1) {
+    border-left: none;
+}
+.cell:nth-child(3n + 3) {
+    border-right: none;
+}
+.cell:last-child,
+.cell:nth-child(7),
+.cell:nth-child(8) {
+    border-bottom: none;
+}
+/* END */
 
-.restart-btn, .start-btn {
-    margin-top: 15px;
-    font-family: "Permanent Marker", cursive;
-    font-weight: bold;
-    font-size: 20px;
-    padding: 5px 15px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition-duration: 0.4s;
+/* Create 2 instances of the object use to create our X */
+.cell.x::before,
+.cell.x::after {
+    content: '';
+    position: absolute;
+    width: calc(var(--mark-size) * .15);
+    height: var(--mark-size);
+    background-color: black;
 }
+/* Rotates the 2 L shapes to create an X */
+.cell.x::before {
+    transform: rotate(45deg);
+}
+.cell.x::after {
+    transform: rotate(-45deg);
+}
+/* END */
 
-.restart-btn:hover, .start-btn:hover {
-    background-color: aquamarine;
-    color: black;
+/* Creates a circle for our O marker */
+.cell.circle::before,
+.cell.circle::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
 }
+.cell.cell.circle::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+    background-color: black;
+}
+.cell.cell.circle::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: white;
+}
+/* END */
