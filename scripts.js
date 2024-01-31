@@ -16,10 +16,12 @@ const gameboard = (function () {
 console.log(gameboard.winConditions);
 
 // Controls current player and symbol display
-(() => {
+const displayController = (function () {
     const playerOne = player('Player One', 'X');
+    console.log(playerOne);
     const playerTwo = player('Player Two', 'O');
-    let displayController
+    console.log(playerTwo);
+
 })();
 
 function player (name, symbol) {
